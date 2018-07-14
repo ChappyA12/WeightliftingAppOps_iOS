@@ -21,12 +21,17 @@
 
 - (void)all:(void(^)(NSArray<BTAPIUser *> *users))completion {
     [self getRequestWithPath:@"users/query.php" completion:^(NSDictionary *response, NSError *error) {
-        if (error) {
+        if (error || !response[@"users"]) {
             NSLog(@"%@",error);
             completion(nil);
             return;
         }
-        completion(response[@"users"]);
+        NSArray <NSDictionary *> *rawUsers = response[@"users"];
+        NSMutableArray <BTAPIUser *> *users = @[].mutableCopy;
+        for (NSDictionary *rawUser in rawUsers) {
+            [users addObject:[BTAPIUser userForDictionary:rawUser]];
+        }
+        completion(users);
     }];
 }
 
