@@ -27,9 +27,10 @@
             return;
         }
         NSArray <NSDictionary *> *rawUsers = response[@"users"];
-        NSMutableArray <BTAPIUser *> *users = @[].mutableCopy;
-        for (NSDictionary *rawUser in rawUsers) {
-            [users addObject:[BTAPIUser userForDictionary:rawUser]];
+        NSError *jsonError;
+        NSArray <BTAPIUser *> *users = [BTAPIUser arrayOfModelsFromDictionaries:rawUsers error:&jsonError];
+        if (error) {
+            NSLog(@"error");
         }
         completion(users);
     }];

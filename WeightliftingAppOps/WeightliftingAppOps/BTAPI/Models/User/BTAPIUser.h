@@ -2,28 +2,36 @@
 //  BTAPIUser.h
 //  WeightliftingAppOps
 //
-//  Created by Chappy Asel on 7/13/18.
+//  Created by Chappy Asel on 8/3/18.
 //  Copyright © 2018 CA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <JSONModel/JSONModel.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@interface BTAPIUser : JSONModel
 
-@interface BTAPIUser : NSObject
+@property (nonatomic) NSString *        username;
+@property (nonatomic) NSString *        imageUrl;           //optional
 
-@property (nonatomic) NSString *name;
-@property (nonatomic) NSString *deviceID;
-@property (nonatomic) NSString *facebookID;
+@property (nonatomic) NSDate *          dateCreated;        //optional
+@property (nonatomic) NSDate *          lastActivity;       //optional
+@property (nonatomic) bool              loggedIn;           //optional
 
-@property (nonatomic) NSDate *dateCreated;
-@property (nonatomic) NSDate *dateUpdated;
-@property (nonatomic) bool loggedIn;
+@property (nonatomic) float             weight;             //optional
+@property (nonatomic) bool              weightInLbs;        //optional
 
-+ (BTAPIUser *)userForDictionary:(NSDictionary *)dict;
+@property (nonatomic) NSInteger         xp;                 //optional
 
-- (NSDictionary *)toDictionary;
+@property (nonatomic) NSInteger         totalDuration;      //optional
+@property (nonatomic) NSInteger         totalVolume;        //optional
+@property (nonatomic) NSInteger         totalWorkouts;      //optional
+@property (nonatomic) NSInteger         totalSets;          //optional
+@property (nonatomic) NSInteger         totalExercises;     //optional
+@property (nonatomic) NSInteger         powerliftingTotal;  //optional
+
+@property (nonatomic) NSInteger         currentStreak;      //optional
+@property (nonatomic) NSInteger         longestStreak;      //optional
+
+@property (nonatomic) NSDictionary *    metadata;           //optional
 
 @end
-
-NS_ASSUME_NONNULL_END
