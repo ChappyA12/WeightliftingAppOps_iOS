@@ -19,7 +19,7 @@
     return shared;
 }
 
-- (void)update:(BTAPIUser *)user completion:(void(^)(bool))completion {
+- (void)update:(BTAPIUser *)user completion:(void(^)(bool success))completion {
     [self performRequest:[BTAPIRequest method:POST path:@"users/update.php" body:user.toDictionary]
               completion:^(NSDictionary *response, NSError *error) {
                   if (error) {

@@ -13,9 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTAPI : NSObject
 
-+ (BTAPI *)sharedInstance;
-
-@property BTAPIUsersManager *users;
++ (BTAPIUsersManager *)users;
 
 @end
 

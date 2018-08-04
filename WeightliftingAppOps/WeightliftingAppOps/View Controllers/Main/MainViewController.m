@@ -17,7 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [BTAPI.sharedInstance.users all:^(NSArray<BTAPIUser *> *users) {
+    BTAPIUser *user = [[BTAPIUser alloc] init];
+    user.username = @"Bob";
+    user.xp = 21;
+    [BTAPI.users update:user completion:^(bool success) {
+        NSLog(@"Update done");
+    }];
+    [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
         NSLog(@"%@", users);
     }];
 }

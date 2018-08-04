@@ -10,14 +10,8 @@
 
 @implementation BTAPI
 
-+ (BTAPI *)sharedInstance {
-    static BTAPI *shared = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        shared = [[self alloc] init];
-        shared.users = BTAPIUsersManager.sharedInstance;
-    });
-    return shared;
++ (BTAPIUsersManager *)users {
+    return BTAPIUsersManager.sharedInstance;
 }
 
 @end
