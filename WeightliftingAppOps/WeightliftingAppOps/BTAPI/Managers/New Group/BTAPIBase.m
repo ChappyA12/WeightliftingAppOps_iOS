@@ -10,15 +10,16 @@
 
 @implementation BTAPIBase
 
-- (void)getRequestWithPath:(NSString *)path completion:(void (^)(NSDictionary *response, NSError *error))completion {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self urlWithPath:path]
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:10];
-    request.HTTPMethod = @"GET";
-    [self addAuthToRequest:request];
+- (void)performRequest:(BTAPIRequest *)request completion:(void (^)(NSDictionary *response, NSError *error))completion {
+    NSMutableURLRequest *requestObj = [NSMutableURLRequest requestWithURL:[self urlWithPath:request.path]
+                                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                          timeoutInterval:10];
+    requestObj.HTTPMethod = request.method;
+    if (request.body) requestObj.HTTPBody = [NSKeyedArchiver archivedDataWithRootObject:request.body];
+    [self addAuthToRequest:requestObj];
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:requestObj
+                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             completion(nil, error);
             return;
@@ -26,7 +27,6 @@
         NSError *jsonError;
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
         if (jsonError) {
-            //NSString *stringResponse = [[NSString alloc] initWithData: data encoding: NSISOLatin1StringEncoding]);
             completion(nil, error);
             return;
         }

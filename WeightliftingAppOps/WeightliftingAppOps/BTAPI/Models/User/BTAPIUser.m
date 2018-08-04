@@ -20,8 +20,4 @@
     return [JSONKeyMapper mapperForSnakeCase];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"username: %@", self.username];
-}
-
 @end

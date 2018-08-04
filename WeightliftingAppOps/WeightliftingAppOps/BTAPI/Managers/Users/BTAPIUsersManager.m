@@ -20,7 +20,8 @@
 }
 
 - (void)all:(void(^)(NSArray<BTAPIUser *> *users))completion {
-    [self getRequestWithPath:@"users/query.php" completion:^(NSDictionary *response, NSError *error) {
+    [self performRequest:[BTAPIRequest method:GET path:@"users/query.php" body:nil]
+              completion:^(NSDictionary *response, NSError *error) {
         if (error || !response[@"users"]) {
             NSLog(@"%@",error);
             completion(nil);
@@ -31,6 +32,8 @@
         NSArray <BTAPIUser *> *users = [BTAPIUser arrayOfModelsFromDictionaries:rawUsers error:&jsonError];
         if (error) {
             NSLog(@"error");
+            completion(nil);
+            return;
         }
         completion(users);
     }];

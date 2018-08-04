@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "BenchTrackerKeys.h"
+#import "BTAPIRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BTAPIBase : NSObject
 
-- (void)getRequestWithPath:(NSString *)path
-                completion:(void (^)(NSDictionary *response, NSError *error))completion;
+- (void)performRequest:(BTAPIRequest *)request completion:(void (^)(NSDictionary *response, NSError *error))completion;
 
 @end
 
