@@ -19,24 +19,36 @@
     return shared;
 }
 
+- (void)update:(BTAPIUser *)user completion:(void(^)(bool))completion {
+    [self performRequest:[BTAPIRequest method:POST path:@"users/update.php" body:user.toDictionary]
+              completion:^(NSDictionary *response, NSError *error) {
+                  if (error) {
+                      NSLog(@"%@",error);
+                      completion(false);
+                      return;
+                  }
+                  completion(true);
+              }];
+}
+
 - (void)all:(void(^)(NSArray<BTAPIUser *> *users))completion {
     [self performRequest:[BTAPIRequest method:GET path:@"users/query.php" body:nil]
               completion:^(NSDictionary *response, NSError *error) {
-        if (error || !response[@"users"]) {
-            NSLog(@"%@",error);
-            completion(nil);
-            return;
-        }
-        NSArray <NSDictionary *> *rawUsers = response[@"users"];
-        NSError *jsonError;
-        NSArray <BTAPIUser *> *users = [BTAPIUser arrayOfModelsFromDictionaries:rawUsers error:&jsonError];
-        if (error) {
-            NSLog(@"error");
-            completion(nil);
-            return;
-        }
-        completion(users);
-    }];
+                  if (error || !response[@"users"]) {
+                      NSLog(@"%@",error);
+                      completion(nil);
+                      return;
+                  }
+                  NSArray <NSDictionary *> *rawUsers = response[@"users"];
+                  NSError *jsonError;
+                  NSArray <BTAPIUser *> *users = [BTAPIUser arrayOfModelsFromDictionaries:rawUsers error:&jsonError];
+                  if (error) {
+                      NSLog(@"error");
+                      completion(nil);
+                      return;
+                  }
+                  completion(users);
+              }];
 }
 
 @end

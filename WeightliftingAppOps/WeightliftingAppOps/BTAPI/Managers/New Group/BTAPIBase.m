@@ -18,20 +18,24 @@
     if (request.body) requestObj.HTTPBody = [NSKeyedArchiver archivedDataWithRootObject:request.body];
     [self addAuthToRequest:requestObj];
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:requestObj
-                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error) {
-            completion(nil, error);
-            return;
-        }
-        NSError *jsonError;
-        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        if (jsonError) {
-            completion(nil, error);
-            return;
-        }
-        completion(jsonResponse, nil);
-    }];
+    NSURLSessionDataTask *task =
+        [session dataTaskWithRequest:requestObj
+                   completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                       NSInteger statusCode = 200;
+                       if ([response respondsToSelector:@selector(statusCode)])
+                           statusCode = [(NSHTTPURLResponse *)response statusCode];
+                       if (error || statusCode < 200 || statusCode > 299) {
+                           completion(nil, error);
+                           return;
+                       }
+                       NSError *jsonError;
+                       NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                       if (jsonError) {
+                           completion(nil, error);
+                           return;
+                       }
+                       completion(jsonResponse, nil);
+                   }];
     [task resume];
 }
 

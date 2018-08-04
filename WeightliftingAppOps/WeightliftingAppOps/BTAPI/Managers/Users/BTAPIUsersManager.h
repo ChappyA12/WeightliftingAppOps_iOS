@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BTAPIUsersManager *)sharedInstance;
 
+- (void)update:(BTAPIUser *)user completion:(void(^)(bool))completion;
+
 - (void)all:(void(^)(NSArray<BTAPIUser *> *users))completion;
 
 @end
