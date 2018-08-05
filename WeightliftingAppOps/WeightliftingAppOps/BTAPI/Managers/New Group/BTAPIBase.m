@@ -15,17 +15,22 @@
                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                           timeoutInterval:10];
     requestObj.HTTPMethod = request.method;
-    if (request.body) requestObj.HTTPBody = [NSKeyedArchiver archivedDataWithRootObject:request.body];
+    if (request.body) requestObj.HTTPBody = [NSJSONSerialization dataWithJSONObject:request.body options:0 error:nil];
     [self addAuthToRequest:requestObj];
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task =
         [session dataTaskWithRequest:requestObj
                    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                       if (error) {
+                           completion(nil, error);
+                           return;
+                       }
                        NSInteger statusCode = 200;
                        if ([response respondsToSelector:@selector(statusCode)])
                            statusCode = [(NSHTTPURLResponse *)response statusCode];
-                       if (error || statusCode < 200 || statusCode > 299) {
-                           completion(nil, error);
+                       if (statusCode < 200 || statusCode > 299) {
+                           NSString *err = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
+                           completion(nil, [NSError errorWithDomain:NSURLErrorDomain code:statusCode userInfo:@{@"response": err}]);
                            return;
                        }
                        NSError *jsonError;
@@ -50,6 +55,7 @@
     NSData *authData = [authStr dataUsingEncoding:NSUTF8StringEncoding];
     NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
     [request addValue:authValue forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 }
 
 @end
