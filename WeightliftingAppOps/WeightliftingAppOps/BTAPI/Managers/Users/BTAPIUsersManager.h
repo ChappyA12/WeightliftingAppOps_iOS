@@ -10,18 +10,22 @@
 #import "BTAPIBase.h"
 #import "BTAPIUser.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface BTAPIUsersManager : BTAPIBase
 
 + (BTAPIUsersManager *)sharedInstance;
 
-- (void)delete:(BTAPIUser *)user completion:(void(^)(bool success))completion;
+- (void)getUsername:(void(^)(NSString *username))completion;
+
+- (void)insert:(NSString *)username completion:(void(^)(bool success))completion;
 
 - (void)update:(BTAPIUser *)user completion:(void(^)(bool success))completion;
+
+- (void)delete:(NSString *)username completion:(void(^)(bool deleted))completion;
+
+- (void)exists:(NSString *)username completion:(void(^)(bool success, bool exists))completion;
+
+- (void)get:(NSString *)username completion:(void(^)(BTAPIUser *user))completion;
 
 - (void)all:(void(^)(NSArray<BTAPIUser *> *users))completion;
 
 @end
-
-NS_ASSUME_NONNULL_END

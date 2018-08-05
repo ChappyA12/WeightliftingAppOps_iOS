@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSString *        username;
 @property (nonatomic) NSString *        imageUrl;           //optional
+@property (nonatomic) NSString *        deviceUuid;         //optional
 
 @property (nonatomic) NSDate *          dateCreated;        //optional
 @property (nonatomic) NSDate *          lastActivity;       //optional

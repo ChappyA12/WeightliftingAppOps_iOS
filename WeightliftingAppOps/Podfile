@@ -1,7 +1,9 @@
 platform :ios, '10.0'
 
 target 'WeightliftingAppOps' do
-
   pod 'JSONModel'
+end
 
+target 'BTAPITests' do
+  pod 'JSONModel'
 end

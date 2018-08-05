@@ -10,11 +10,16 @@
 
 @implementation BTAPIBase
 
+//TODO: log in / out helper, leaderboard helper, change username, username exists, 'get' by username -> profile view, ops vs. user permissions
+//      get username from server
+
 - (void)performRequest:(BTAPIRequest *)request completion:(void (^)(NSDictionary *response, NSError *error))completion {
     if (request.params) {
         request.path = [request.path stringByAppendingString:@"?"];
-        for (NSString *key in request.params.allKeys)
-            request.path = [NSString stringWithFormat:@"%@%@=%@&",request.path, key, request.params[key]];
+        for (NSString *key in request.params.allKeys) {
+            NSString *value = request.params[key];
+            request.path = [NSString stringWithFormat:@"%@%@=%@&",request.path, key, [value stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+        }
         request.path = [request.path substringToIndex:request.path.length-1];
     }
     NSMutableURLRequest *requestObj = [NSMutableURLRequest requestWithURL:[self urlWithPath:request.path]
