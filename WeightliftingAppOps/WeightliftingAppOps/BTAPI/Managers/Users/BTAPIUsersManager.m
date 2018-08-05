@@ -19,6 +19,18 @@
     return shared;
 }
 
+- (void)delete:(BTAPIUser *)user completion:(void(^)(bool success))completion {
+    [self performRequest:[BTAPIRequest method:DELETE path:@"users/delete.php" params:@{@"username": user.username}]
+              completion:^(NSDictionary *response, NSError *error) {
+                  if (error) {
+                      NSLog(@"%@",error);
+                      completion(false);
+                      return;
+                  }
+                  completion(true);
+              }];
+}
+
 - (void)update:(BTAPIUser *)user completion:(void(^)(bool success))completion {
     [self performRequest:[BTAPIRequest method:POST path:@"users/update.php" body:@{@"user": user.toDictionary}]
               completion:^(NSDictionary *response, NSError *error) {
@@ -32,7 +44,7 @@
 }
 
 - (void)all:(void(^)(NSArray<BTAPIUser *> *users))completion {
-    [self performRequest:[BTAPIRequest method:GET path:@"users/query.php" body:nil]
+    [self performRequest:[BTAPIRequest method:GET path:@"users/query.php"]
               completion:^(NSDictionary *response, NSError *error) {
                   if (error || !response[@"users"]) {
                       NSLog(@"%@",error);

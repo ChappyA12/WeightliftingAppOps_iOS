@@ -26,6 +26,11 @@
     [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
         NSLog(@"%@", users);
     }];
+    user = [[BTAPIUser alloc] init];
+    user.username = @"joe";
+    [BTAPI.users delete:user completion:^(bool success) {
+        NSLog(@"Delete done");
+    }];
 }
 
 

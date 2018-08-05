@@ -18,9 +18,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSString *method;
 @property (nonatomic) NSString *path;
+@property (nonatomic) NSDictionary *params;
 @property (nonatomic) NSDictionary *body;
 
-+ (BTAPIRequest *)method:(NSString *)method path:(NSString *)path body:(NSDictionary * _Nullable)body;
++ (BTAPIRequest *)method:(NSString *)method
+                    path:(NSString *)path;
+
++ (BTAPIRequest *)method:(NSString *)method
+                    path:(NSString *)path
+                    body:(NSDictionary * _Nullable)body;
+
++ (BTAPIRequest *)method:(NSString *)method
+                    path:(NSString *)path
+                  params:(NSDictionary * _Nullable)params;
+
++ (BTAPIRequest *)method:(NSString *)method
+                    path:(NSString *)path
+                  params:(NSDictionary * _Nullable)params
+                    body:(NSDictionary * _Nullable)body;
 
 @end
 
