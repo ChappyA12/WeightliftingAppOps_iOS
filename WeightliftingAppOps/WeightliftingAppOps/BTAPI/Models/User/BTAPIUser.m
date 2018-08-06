@@ -10,6 +10,12 @@
 
 @implementation BTAPIUser
 
++ (BTAPIUser *)username:(NSString *)username {
+    BTAPIUser *user = [[BTAPIUser alloc] init];
+    user.username = username;
+    return user;
+}
+
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     if ([propertyName isEqualToString:@"name"])
         return NO;
@@ -18,6 +24,10 @@
 
 + (JSONKeyMapper *)keyMapper {
     return [JSONKeyMapper mapperForSnakeCase];
+}
+
+- (BOOL)isEqual:(BTAPIUser *)other {
+    return [self.username isEqualToString:other.username];
 }
 
 @end

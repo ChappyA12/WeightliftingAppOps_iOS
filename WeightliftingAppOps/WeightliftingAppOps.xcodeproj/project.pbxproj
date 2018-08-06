@@ -24,6 +24,12 @@
 		50E7DA442117AAFF006B9DA3 /* BTAPIUsersQueryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E7DA402117AAFF006B9DA3 /* BTAPIUsersQueryTests.m */; };
 		50E7DA452117AAFF006B9DA3 /* BTAPIUsersInsertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E7DA412117AAFF006B9DA3 /* BTAPIUsersInsertTests.m */; };
 		50E7DA462117AAFF006B9DA3 /* BTAPIUsersUpdateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E7DA422117AAFF006B9DA3 /* BTAPIUsersUpdateTests.m */; };
+		50E80F792117C970008882B8 /* BTAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026947720F97EB200D9C6FA /* BTAPI.m */; };
+		50E80F7B2117C970008882B8 /* BTAPIBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026948620F984C700D9C6FA /* BTAPIBase.m */; };
+		50E80F7D2117C970008882B8 /* BTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068E3E421155C3700B421CB /* BTAPIRequest.m */; };
+		50E80F7F2117C970008882B8 /* BTAPIUsersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026948220F9801000D9C6FA /* BTAPIUsersManager.m */; };
+		50E80F812117C970008882B8 /* BTAPIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A1820E21154122005469B5 /* BTAPIUser.m */; };
+		50E80F832117C970008882B8 /* JSONValueTransformer+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068E3E121154BD500B421CB /* JSONValueTransformer+NSDate.m */; };
 		D69CAC29AAEC0DB97B28B751 /* libPods-WeightliftingAppOps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19026D4425F22B1BEDBF6637 /* libPods-WeightliftingAppOps.a */; };
 /* End PBXBuildFile section */
 
@@ -175,8 +181,7 @@
 		5068E3DF21154BAE00B421CB /* Transformers */ = {
 			isa = PBXGroup;
 			children = (
-				5068E3E021154BD500B421CB /* JSONValueTransformer+NSDate.h */,
-				5068E3E121154BD500B421CB /* JSONValueTransformer+NSDate.m */,
+				50E80F842117CDA5008882B8 /* NSDate */,
 			);
 			path = Transformers;
 			sourceTree = "<group>";
@@ -252,6 +257,15 @@
 				50E7DA3F2117AAFF006B9DA3 /* BTAPIUsersDeleteTests.m */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		50E80F842117CDA5008882B8 /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				5068E3E021154BD500B421CB /* JSONValueTransformer+NSDate.h */,
+				5068E3E121154BD500B421CB /* JSONValueTransformer+NSDate.m */,
+			);
+			path = NSDate;
 			sourceTree = "<group>";
 		};
 		918354BF8C319EFD8E5888AF /* Pods */ = {
@@ -422,6 +436,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E80F792117C970008882B8 /* BTAPI.m in Sources */,
+				50E80F7B2117C970008882B8 /* BTAPIBase.m in Sources */,
+				50E80F7D2117C970008882B8 /* BTAPIRequest.m in Sources */,
+				50E80F7F2117C970008882B8 /* BTAPIUsersManager.m in Sources */,
+				50E80F812117C970008882B8 /* BTAPIUser.m in Sources */,
+				50E80F832117C970008882B8 /* JSONValueTransformer+NSDate.m in Sources */,
 				50E7DA452117AAFF006B9DA3 /* BTAPIUsersInsertTests.m in Sources */,
 				50E7DA432117AAFF006B9DA3 /* BTAPIUsersDeleteTests.m in Sources */,
 				50E7DA442117AAFF006B9DA3 /* BTAPIUsersQueryTests.m in Sources */,

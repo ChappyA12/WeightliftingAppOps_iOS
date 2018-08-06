@@ -23,16 +23,39 @@
     
 }
 
+// (1) get username
+// (2) insert user
+// (3) delete user
 - (void)testDelete {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Delete"];
-    expectation.expectedFulfillmentCount = 2;
-    [BTAPI.users delete:@"Harrison" completion:^(bool deleted) {
-        XCTAssertTrue(deleted);
+    expectation.expectedFulfillmentCount = 3;
+    [BTAPI.users getUsername:^(NSString *username) {
+        XCTAssertNotNil(username);
         [expectation fulfill];
+        [BTAPI.users insert:username completion:^(bool success) {
+            XCTAssertTrue(success);
+            [expectation fulfill];
+            [BTAPI.users delete:username completion:^(bool deleted) {
+                XCTAssertTrue(deleted);
+                [expectation fulfill];
+            }];
+        }];
     }];
-    [BTAPI.users delete:@"#BAD" completion:^(bool deleted) {
-        XCTAssertFalse(deleted);
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
+}
+
+// (1) get username
+// (2) delete user
+- (void)testBadDelete {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Bad Delete"];
+    expectation.expectedFulfillmentCount = 2;
+    [BTAPI.users getUsername:^(NSString *username) {
+        XCTAssertNotNil(username);
         [expectation fulfill];
+        [BTAPI.users delete:username completion:^(bool deleted) {
+            XCTAssertFalse(deleted);
+            [expectation fulfill];
+        }];
     }];
     [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }

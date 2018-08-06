@@ -22,35 +22,84 @@
     
 }
 
+// (1) get username
+// (2) query exists
 - (void)testQueryExists {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Query Exists"];
     expectation.expectedFulfillmentCount = 2;
-    [BTAPI.users exists:@"Bob" completion:^(bool success, bool exists) {
-        XCTAssertTrue(success);
-        XCTAssertTrue(exists);
+    [BTAPI.users getUsername:^(NSString *username) {
+        XCTAssertNotNil(username);
         [expectation fulfill];
-    }];
-    [BTAPI.users exists:@"#BAD" completion:^(bool success, bool exists) {
-        XCTAssertTrue(success);
-        XCTAssertFalse(exists);
-        [expectation fulfill];
+        [BTAPI.users exists:username completion:^(bool success, bool exists) {
+            XCTAssertTrue(success);
+            XCTAssertFalse(exists);
+            [expectation fulfill];
+        }];
     }];
     [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }
 
+// (1) query all
+// (2) query exists
+- (void)testBadQueryExists {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Bad Query Exists"];
+    expectation.expectedFulfillmentCount = 2;
+    [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
+        XCTAssertNotNil(users);
+        XCTAssertTrue(users.count > 0);
+        XCTAssertTrue(users.count < 11);
+        [expectation fulfill];
+        [BTAPI.users exists:users[0].username completion:^(bool success, bool exists) {
+            XCTAssertTrue(success);
+            XCTAssertTrue(exists);
+            [expectation fulfill];
+        }];
+    }];
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
+}
+
+// (1) get all
+// (2) get user
 - (void)testQueryGet {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Query Get"];
-    [BTAPI.users get:@"Bob" completion:^(BTAPIUser *user) {
-        XCTAssertNotNil(user);
+    expectation.expectedFulfillmentCount = 2;
+    [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
+        XCTAssertNotNil(users);
+        XCTAssertTrue(users.count > 0);
+        XCTAssertTrue(users.count < 11);
         [expectation fulfill];
+        [BTAPI.users get:users[0].username completion:^(BTAPIUser *user) {
+            XCTAssertNotNil(user);
+            XCTAssertEqualObjects(user.username, users[0].username);
+            [expectation fulfill];
+        }];
     }];
     [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }
 
+// (1) get username
+// (2) get user
+- (void)testBadQueryGet {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Bad Query Get"];
+    expectation.expectedFulfillmentCount = 2;
+    [BTAPI.users getUsername:^(NSString *username) {
+        XCTAssertNotNil(username);
+        [expectation fulfill];
+        [BTAPI.users get:username completion:^(BTAPIUser *user) {
+            XCTAssertNil(user);
+            [expectation fulfill];
+        }];
+    }];
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
+}
+
+// (1) get all
 - (void)testQueryAll {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Query All"];
     [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
         XCTAssertNotNil(users);
+        XCTAssertTrue(users.count > 0);
+        XCTAssertTrue(users.count < 11);
         [expectation fulfill];
     }];
     [self waitForExpectationsWithTimeout:5.0 handler:nil];

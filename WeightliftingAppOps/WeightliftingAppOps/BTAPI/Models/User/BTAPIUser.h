@@ -35,4 +35,6 @@
 
 @property (nonatomic) NSDictionary *    metadata;           //optional
 
++ (BTAPIUser *)username:(NSString *)username;
+
 @end
