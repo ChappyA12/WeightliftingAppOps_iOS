@@ -46,8 +46,7 @@
     expectation.expectedFulfillmentCount = 2;
     [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
         XCTAssertNotNil(users);
-        XCTAssertTrue(users.count > 0);
-        XCTAssertTrue(users.count < 11);
+        XCTAssert(users.count > 0);
         [expectation fulfill];
         [BTAPI.users exists:users[0].username completion:^(bool success, bool exists) {
             XCTAssertTrue(success);
@@ -66,11 +65,11 @@
     [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
         XCTAssertNotNil(users);
         XCTAssertTrue(users.count > 0);
-        XCTAssertTrue(users.count < 11);
         [expectation fulfill];
         [BTAPI.users get:users[0].username completion:^(BTAPIUser *user) {
             XCTAssertNotNil(user);
             XCTAssertEqualObjects(user.username, users[0].username);
+            XCTAssertNil(user.deviceUuid);
             [expectation fulfill];
         }];
     }];
@@ -98,8 +97,24 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Query All"];
     [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
         XCTAssertNotNil(users);
-        XCTAssertTrue(users.count > 0);
-        XCTAssertTrue(users.count < 11);
+        XCTAssert(users.count > 0);
+        XCTAssert(users.count < 101);
+        [expectation fulfill];
+    }];
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
+}
+
+// (1) get leaderboard
+- (void)testQueryXPLeaderboard {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Query XP Leaderboard"];
+    [BTAPI.users leaderboard:BTAPIUserLeaderboardTypeXP completion:^(NSArray<BTAPIUser *> *users) {
+        XCTAssertNotNil(users);
+        XCTAssert(users.count > 0);
+        XCTAssert(users.count < 101);
+        XCTAssert(users[0].xp > 0);
+        XCTAssert(users[0].xp >= users[1].xp);
+        XCTAssert(users[1].xp >= users[2].xp);
+        XCTAssert(users[0].deviceUuid == nil);
         [expectation fulfill];
     }];
     [self waitForExpectationsWithTimeout:5.0 handler:nil];

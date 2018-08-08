@@ -10,9 +10,6 @@
 
 @implementation BTAPIBase
 
-//TODO: log in / out helper, leaderboard helper, change username, username exists, 'get' by username -> profile view, ops vs. user permissions
-//      get username from server
-
 - (void)performRequest:(BTAPIRequest *)request completion:(void (^)(NSDictionary *response, NSError *error))completion {
     if (request.params) {
         request.path = [request.path stringByAppendingString:@"?"];
@@ -47,6 +44,7 @@
                        NSError *jsonError;
                        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
                        if (jsonError) {
+                           NSLog(@"JSON Error Output:\n%@", [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding]);
                            completion(nil, error);
                            return;
                        }

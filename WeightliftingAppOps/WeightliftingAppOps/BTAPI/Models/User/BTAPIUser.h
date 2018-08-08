@@ -16,7 +16,7 @@
 
 @property (nonatomic) NSDate *          dateCreated;        //optional
 @property (nonatomic) NSDate *          lastActivity;       //optional
-@property (nonatomic) bool              loggedIn;           //optional
+@property (nonatomic) bool              activeNow;          //optional
 
 @property (nonatomic) float             weight;             //optional
 @property (nonatomic) bool              weightInLbs;        //optional

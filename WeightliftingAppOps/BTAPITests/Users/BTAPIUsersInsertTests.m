@@ -23,27 +23,10 @@
     
 }
 
-// (1) Can get username
-// (2) User doesn't already exist
-- (void)testGetUsername {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Get Username"];
-    expectation.expectedFulfillmentCount = 2;
-    [BTAPI.users getUsername:^(NSString *username) {
-        XCTAssertNotNil(username);
-        [expectation fulfill];
-        [BTAPI.users exists:username completion:^(bool success, bool exists) {
-            XCTAssertTrue(success);
-            XCTAssertFalse(exists);
-            [expectation fulfill];
-        }];
-    }];
-    [self waitForExpectationsWithTimeout:5.0 handler:nil];
-}
-
 // (1) Get username
 // (2) Insert user
-// (3) User now exists
-// (4) Inserting again doesn't work
+// (3) User exists
+// (4) Get user
 - (void)testInsert {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Insert"];
     expectation.expectedFulfillmentCount = 4;
@@ -59,8 +42,12 @@
                 XCTAssertTrue(exists);
                 [expectation fulfill];
             }];
-            [BTAPI.users insert:self.username completion:^(bool success) {
-                XCTAssertFalse(success);
+            [BTAPI.users get:self.username completion:^(BTAPIUser *user) {
+                XCTAssertNotNil(user);
+                XCTAssertEqualWithAccuracy([NSDate.date timeIntervalSinceReferenceDate],
+                                           [user.dateCreated timeIntervalSinceReferenceDate], 1);
+                XCTAssertEqualWithAccuracy([NSDate.date timeIntervalSinceReferenceDate],
+                                           [user.lastActivity timeIntervalSinceReferenceDate], 1);
                 [expectation fulfill];
             }];
         }];
@@ -70,6 +57,23 @@
             XCTAssertTrue(deleted);
         }];
     }];
+}
+
+// (1) Query all
+// (2) Insert user
+- (void)testBadInsert {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Testing Bad Insert"];
+    expectation.expectedFulfillmentCount = 2;
+    [BTAPI.users all:^(NSArray<BTAPIUser *> *users) {
+        XCTAssertNotNil(users);
+        XCTAssertTrue(users.count > 0);
+        [expectation fulfill];
+        [BTAPI.users insert:users[0].username completion:^(bool success) {
+            XCTAssertFalse(success);
+            [expectation fulfill];
+        }];
+    }];
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }
 
 @end

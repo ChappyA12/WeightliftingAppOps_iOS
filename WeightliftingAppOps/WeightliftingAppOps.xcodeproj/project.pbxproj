@@ -14,6 +14,7 @@
 		5068E3E221154BD500B421CB /* JSONValueTransformer+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068E3E121154BD500B421CB /* JSONValueTransformer+NSDate.m */; };
 		5068E3E521155C3700B421CB /* BTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068E3E421155C3700B421CB /* BTAPIRequest.m */; };
 		50A1821021154122005469B5 /* BTAPIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A1820E21154122005469B5 /* BTAPIUser.m */; };
+		50B97ABC2117E0D7004B2FBA /* BTAPIUsersUsernameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B97ABB2117E0D7004B2FBA /* BTAPIUsersUsernameTests.m */; };
 		50D3620C20F97D500086A73E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3620B20F97D500086A73E /* AppDelegate.m */; };
 		50D3620F20F97D500086A73E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3620E20F97D500086A73E /* MainViewController.m */; };
 		50D3621220F97D500086A73E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D3621020F97D500086A73E /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		5068E3E421155C3700B421CB /* BTAPIRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTAPIRequest.m; sourceTree = "<group>"; };
 		50A1820E21154122005469B5 /* BTAPIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAPIUser.m; sourceTree = "<group>"; };
 		50A1820F21154122005469B5 /* BTAPIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAPIUser.h; sourceTree = "<group>"; };
+		50B97ABB2117E0D7004B2FBA /* BTAPIUsersUsernameTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAPIUsersUsernameTests.m; sourceTree = "<group>"; };
 		50D3620720F97D500086A73E /* WeightliftingAppOps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeightliftingAppOps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D3620A20F97D500086A73E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		50D3620B20F97D500086A73E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		50E7DA472117AB06006B9DA3 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				50B97ABB2117E0D7004B2FBA /* BTAPIUsersUsernameTests.m */,
 				50E7DA412117AAFF006B9DA3 /* BTAPIUsersInsertTests.m */,
 				50E7DA422117AAFF006B9DA3 /* BTAPIUsersUpdateTests.m */,
 				50E7DA402117AAFF006B9DA3 /* BTAPIUsersQueryTests.m */,
@@ -440,6 +443,7 @@
 				50E80F7B2117C970008882B8 /* BTAPIBase.m in Sources */,
 				50E80F7D2117C970008882B8 /* BTAPIRequest.m in Sources */,
 				50E80F7F2117C970008882B8 /* BTAPIUsersManager.m in Sources */,
+				50B97ABC2117E0D7004B2FBA /* BTAPIUsersUsernameTests.m in Sources */,
 				50E80F812117C970008882B8 /* BTAPIUser.m in Sources */,
 				50E80F832117C970008882B8 /* JSONValueTransformer+NSDate.m in Sources */,
 				50E7DA452117AAFF006B9DA3 /* BTAPIUsersInsertTests.m in Sources */,
