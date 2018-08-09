@@ -11,9 +11,12 @@
 		5026947820F97EB200D9C6FA /* BTAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026947720F97EB200D9C6FA /* BTAPI.m */; };
 		5026948320F9801000D9C6FA /* BTAPIUsersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026948220F9801000D9C6FA /* BTAPIUsersManager.m */; };
 		5026948720F984C700D9C6FA /* BTAPIBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026948620F984C700D9C6FA /* BTAPIBase.m */; };
+		5065735A211BFE0C002764FD /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50657359211BFE0C002764FD /* NavigationViewController.m */; };
 		5068E3E221154BD500B421CB /* JSONValueTransformer+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068E3E121154BD500B421CB /* JSONValueTransformer+NSDate.m */; };
 		5068E3E521155C3700B421CB /* BTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068E3E421155C3700B421CB /* BTAPIRequest.m */; };
 		50A1821021154122005469B5 /* BTAPIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A1820E21154122005469B5 /* BTAPIUser.m */; };
+		50AE96B4211BD18300FB6C1A /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE96B2211BD18300FB6C1A /* UserTableViewCell.m */; };
+		50AE96B5211BD18300FB6C1A /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50AE96B3211BD18300FB6C1A /* UserTableViewCell.xib */; };
 		50B97ABC2117E0D7004B2FBA /* BTAPIUsersUsernameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B97ABB2117E0D7004B2FBA /* BTAPIUsersUsernameTests.m */; };
 		50D3620C20F97D500086A73E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3620B20F97D500086A73E /* AppDelegate.m */; };
 		50D3620F20F97D500086A73E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3620E20F97D500086A73E /* MainViewController.m */; };
@@ -54,12 +57,17 @@
 		5026948420F9839500D9C6FA /* BenchTrackerKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BenchTrackerKeys.h; sourceTree = "<group>"; };
 		5026948520F984C700D9C6FA /* BTAPIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTAPIBase.h; sourceTree = "<group>"; };
 		5026948620F984C700D9C6FA /* BTAPIBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTAPIBase.m; sourceTree = "<group>"; };
+		50657358211BFE0C002764FD /* NavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		50657359211BFE0C002764FD /* NavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		5068E3E021154BD500B421CB /* JSONValueTransformer+NSDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+NSDate.h"; sourceTree = "<group>"; };
 		5068E3E121154BD500B421CB /* JSONValueTransformer+NSDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSDate.m"; sourceTree = "<group>"; };
 		5068E3E321155C3700B421CB /* BTAPIRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTAPIRequest.h; sourceTree = "<group>"; };
 		5068E3E421155C3700B421CB /* BTAPIRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTAPIRequest.m; sourceTree = "<group>"; };
 		50A1820E21154122005469B5 /* BTAPIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAPIUser.m; sourceTree = "<group>"; };
 		50A1820F21154122005469B5 /* BTAPIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAPIUser.h; sourceTree = "<group>"; };
+		50AE96B1211BD18300FB6C1A /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		50AE96B2211BD18300FB6C1A /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
+		50AE96B3211BD18300FB6C1A /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		50B97ABB2117E0D7004B2FBA /* BTAPIUsersUsernameTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAPIUsersUsernameTests.m; sourceTree = "<group>"; };
 		50D3620720F97D500086A73E /* WeightliftingAppOps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeightliftingAppOps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D3620A20F97D500086A73E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -117,6 +125,7 @@
 			children = (
 				50D3620D20F97D500086A73E /* MainViewController.h */,
 				50D3620E20F97D500086A73E /* MainViewController.m */,
+				50AE96B6211BD18700FB6C1A /* User tvc */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -180,6 +189,15 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
+		5065735C211BFE1E002764FD /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				50657358211BFE0C002764FD /* NavigationViewController.h */,
+				50657359211BFE0C002764FD /* NavigationViewController.m */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		5068E3DF21154BAE00B421CB /* Transformers */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +216,16 @@
 			);
 			name = Base;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		50AE96B6211BD18700FB6C1A /* User tvc */ = {
+			isa = PBXGroup;
+			children = (
+				50AE96B1211BD18300FB6C1A /* UserTableViewCell.h */,
+				50AE96B2211BD18300FB6C1A /* UserTableViewCell.m */,
+				50AE96B3211BD18300FB6C1A /* UserTableViewCell.xib */,
+			);
+			path = "User tvc";
 			sourceTree = "<group>";
 		};
 		50D361FE20F97D500086A73E = {
@@ -236,6 +264,7 @@
 		50D3622020F97D800086A73E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5065735C211BFE1E002764FD /* Navigation */,
 				5026947420F97E3D00D9C6FA /* Main */,
 			);
 			path = "View Controllers";
@@ -364,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AE96B5211BD18300FB6C1A /* UserTableViewCell.xib in Resources */,
 				50D3621720F97D520086A73E /* LaunchScreen.storyboard in Resources */,
 				50D3621420F97D520086A73E /* Assets.xcassets in Resources */,
 				50D3621220F97D500086A73E /* Main.storyboard in Resources */,
@@ -425,6 +455,7 @@
 			files = (
 				50D3620F20F97D500086A73E /* MainViewController.m in Sources */,
 				50D3621A20F97D520086A73E /* main.m in Sources */,
+				50AE96B4211BD18300FB6C1A /* UserTableViewCell.m in Sources */,
 				5026947820F97EB200D9C6FA /* BTAPI.m in Sources */,
 				5026948720F984C700D9C6FA /* BTAPIBase.m in Sources */,
 				5068E3E221154BD500B421CB /* JSONValueTransformer+NSDate.m in Sources */,
@@ -432,6 +463,7 @@
 				50A1821021154122005469B5 /* BTAPIUser.m in Sources */,
 				5068E3E521155C3700B421CB /* BTAPIRequest.m in Sources */,
 				5026948320F9801000D9C6FA /* BTAPIUsersManager.m in Sources */,
+				5065735A211BFE0C002764FD /* NavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
